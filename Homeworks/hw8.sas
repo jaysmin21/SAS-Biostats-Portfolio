@@ -1,0 +1,31 @@
+libname hw8 "C:\723\Class 8\hw8";
+run;
+
+proc sgplot data= hw8.jhs_hw8;
+	title "SBP (mmHG) vs Daily Discrimination";
+	scatter y=sbp x=dailydiscr;
+	run;
+proc sgplot data= hw8.jhs_hw8;
+	title "DBP (mmHG) vs Lifetime Discrimination";
+	scatter y=DBP x=lifetimediscrm;
+	run;
+
+proc sgplot data= hw8.jhs_hw8;
+	title "Total Cholestreol (mg/dL) vs Perceived Stress";
+	scatter y=totchol x=perceivedstress;
+	run;
+proc corr data= hw8.jhs_hw8 fisher;
+var dailydiscr sbp;
+run;
+proc corr data= hw8.jhs_hw8 fisher;
+var lifetimediscrm dbp;
+run;
+proc corr data= hw8.jhs_hw8 fisher;
+var perceivedstress totchol;
+run;
+proc reg data= hw8.jhs_hw8;
+model sbp = dailydiscr / clb;
+run;
+proc reg data= hw8.jhs_hw8;
+model fvc = dailydiscr / clb;
+run;
